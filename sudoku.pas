@@ -3,7 +3,7 @@ program generator_sudoku;
 var
           tablica : array[1..9, 1..9] of Integer;
      k, i, j, los : Integer;
-         trafiony, czysto : Boolean;
+           czysto : Boolean;
          
 
 
@@ -21,21 +21,20 @@ randomize;
             czysto := true;
             k := 1;
 
-				  		repeat 	              
-	              
-	              
 
-		              if (los = tablica[i,k]) then  //poziom
-	                   czysto := false
-	                else
-	                   czysto := true;
-	                
+						  		 repeat 	              
+			              
+				              if (los = tablica[i,k]) or (los = tablica[k,j]) then  //poziom//  pion!
+			                   czysto := false
+			                else
+			                   czysto := true;
+			                
+			                k := k+1;
 
-	                k := k+1;
-               until (k = 9) or (czysto = false);
+		               until (k = 9) or (czysto = false);
 
-              if (czysto = true) then
-                  tablica[i,j] := los;
+            if (czysto = true) then
+              tablica[i,j] := los;
  
          until czysto = true;
 
@@ -84,29 +83,5 @@ end.
   //       9 1 2  3 4 5  6 7 8
 
 
-     
-           // trafiony := false;
-		    
-        // repeat
-           // randomize;
-   
-        //    los := random(9)+1;
-
-        //      // test         
-      		//       for k := 1 to 9 do
-	       //          if (los = tablica[i,k]) or (los = tablica[k,i]) then
-        //              writeln('dupa', i, k)
-        //           else
-        //              begin
-        //                 writeln('test ', i, ' ', k);
-				    //      		      trafiony := true;
-				    //      		      writeln('**************** los ', los); 
-				    //   	    	    tablica[i,j] := los;
-				    //   	    	    count := count +1;
-      	 //                  writeln('**************** loop ', count); 
-				    //           end;
-		              
-      		
-        // until trafiony = true;
 
 
