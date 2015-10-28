@@ -6,21 +6,27 @@ var
 
 begin
 
-  tablica[1,1] := 1;
-  tablica[2,2] := 2;
-  tablica[3,3] := 3;
-  tablica[4,4] := 4;  
-  tablica[9,9] := 9;
+ for i := 1 to 9 do  
+  for j := 1 to 9 do
+	 begin
+	    // randomize;
+	     tablica[i,j] := random(9)+1;
+   end;
+  
+
+
+ 
+
 
 // wyświetlanie
-  for j := 1 to 9 do
+  for i := 1 to 9 do
     begin
-  	  writeln('');
-	 	  for i := 1 to 9 do
-		    write(tablica[j,i], ' ');
+  	  writeln;
+	 	  for j := 1 to 9 do
+		    write(tablica[i,j], ' ');
     end;
 
-   readln;
+   // readln;
 
 end.
 
@@ -32,8 +38,6 @@ end.
   //      wszystkie z boxa są inne
 
   //   losuj A2
-
-
 
 
   //  losowanie 9 różnych liczb dla A B C D E F G H I
@@ -56,7 +60,7 @@ end.
   //       I1 I2 I3  I4 I5 I6  I7 I8 I9
 
 
-		// 1 2 3  4 5 6  7 8 9
+	//       1 2 3  4 5 6  7 8 9
   //       4 5 6  7 8 9  1 2 3
   //       7 8 9  1 2 3  4 5 6
 
