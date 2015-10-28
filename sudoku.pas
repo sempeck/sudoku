@@ -1,22 +1,47 @@
 program generator_sudoku;
 
 var
-  tablica : array[1..9, 1..9] of Integer;
-     i, j : Integer;
+          tablica : array[1..9, 1..9] of Integer;
+     k, i, j, los : Integer;
+         trafiony, czysto : Boolean;
+         
+
 
 begin
 
+randomize;
+
  for i := 1 to 9 do  
-  for j := 1 to 9 do
-	 begin
-	    // randomize;
-	     tablica[i,j] := random(9)+1;
-   end;
-  
+	  for j := 1 to 9 do
+	  	begin
+          
+         repeat
+          	
+						los := random(9)+1;
+            czysto := true;
+            k := 1;
 
+				  		repeat 	              
+	              
+	              
 
+		              if (los = tablica[i,k]) then  //poziom
+	                   czysto := false
+	                else
+	                   czysto := true;
+	                
+
+	                k := k+1;
+               until (k = 9) or (czysto = false);
+
+              if (czysto = true) then
+                  tablica[i,j] := los;
  
+         until czysto = true;
 
+
+      end;
+       
 
 // wyświetlanie
   for i := 1 to 9 do
@@ -31,21 +56,7 @@ begin
 end.
 
 
-  //  losuj a1
-  //    aż do 
-  //      wszystkie z rzędu są inne
-  //      wszystkie z kolumny są inne
-  //      wszystkie z boxa są inne
-
-  //   losuj A2
-
-
-  //  losowanie 9 różnych liczb dla A B C D E F G H I
-  //    sprawdzenie rzędu
-  //    sprawdzenie kolumny
-  //    sprawdzenie boxa
-
- 
+  //  row column box
 
   //       A1 A2 A3  A4 A5 A6  A7 A8 A9
   //       B1 B2 B3  B4 B5 B6  B7 B8 B9
@@ -71,4 +82,31 @@ end.
   //       3 4 5  6 7 8  9 1 2
   //       6 7 8  9 1 2  3 4 5
   //       9 1 2  3 4 5  6 7 8
+
+
+     
+           // trafiony := false;
+		    
+        // repeat
+           // randomize;
+   
+        //    los := random(9)+1;
+
+        //      // test         
+      		//       for k := 1 to 9 do
+	       //          if (los = tablica[i,k]) or (los = tablica[k,i]) then
+        //              writeln('dupa', i, k)
+        //           else
+        //              begin
+        //                 writeln('test ', i, ' ', k);
+				    //      		      trafiony := true;
+				    //      		      writeln('**************** los ', los); 
+				    //   	    	    tablica[i,j] := los;
+				    //   	    	    count := count +1;
+      	 //                  writeln('**************** loop ', count); 
+				    //           end;
+		              
+      		
+        // until trafiony = true;
+
 
