@@ -24,8 +24,12 @@ randomize;
 
 						  		 repeat 	              
 			              
-				              if (los = tablica[i,k]) or (los = tablica[k,j]) then  //poziom//  pion!
-			                   czysto := false
+				              if (los = tablica[i,k]) or (los = tablica[k,j]) then  //poziom i pion
+			                   begin
+				                   writeln('*test false ', i, ' ', j, ' ', k);
+				                   czysto := false;
+				                   
+			                   end
 			                else
 			                   czysto := true;
 			                
@@ -81,7 +85,5 @@ end.
   //       3 4 5  6 7 8  9 1 2
   //       6 7 8  9 1 2  3 4 5
   //       9 1 2  3 4 5  6 7 8
-
-
 
 
