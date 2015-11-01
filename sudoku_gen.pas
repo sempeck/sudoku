@@ -7,7 +7,8 @@ var
 	 suma_testowa : Integer;
    next : Boolean;
 
-   rzad, xx, counter : Integer;
+   rzad, xx, counter, space : Integer;
+   xx1, xx2, xx3, xx4 : Integer;
 
 
 
@@ -54,17 +55,56 @@ function poziom(): Boolean;
   end;
 
 function kwadrat(): Boolean;
-   begin
+begin
    	kwadrat := true;
+     xx := x;
+     rzad := (x div 9); 
+ if (rzad in [0,3,6]) then 
+   kwadrat := true
+ else
+  begin
+  if (x in [9,12,15,18,21,24,36,39,42,45,48,51,63,66,69,72,75,78]) then
+       begin 
+       xx1 := xx - 17;
+       xx2 := xx - 16;
+       xx3 := xx - 8;
+       xx4 := xx - 7;
+       if (tablica[xx1] = l) or (tablica[xx2] = l) or (tablica[xx3] = l) or (tablica[xx4] = l) then
+         kwadrat := false;
+       end;
+
+  if (x in [10,13,16,19,22,25,37,40,43,46,49,52,64,67,70,73,76,79]) then
+       begin 
+       xx1 := xx - 19;
+       xx2 := xx - 17;
+       xx3 := xx - 10;
+       xx4 := xx - 8;
+       if (tablica[xx1] = l) or (tablica[xx2] = l) or (tablica[xx3] = l) or (tablica[xx4] = l) then
+         kwadrat := false;
+       end;
+
+
+  if (x in [11,14,17,20,23,26,38,41,44,47,50,53,65,68,71,74,77,80]) then
+       begin 
+       xx1 := xx - 20;
+       xx2 := xx - 19;
+       xx3 := xx - 11;
+       xx4 := xx - 10;
+       if (tablica[xx1] = l) or (tablica[xx2] = l) or (tablica[xx3] = l) or (tablica[xx4] = l) then
+         kwadrat := false;
+       end;
+
   end;
+
+end;
 
  
 
 begin
   randomize;
 
-counter := 0;
-  x := 0;
+       counter := 0;
+             x := 0;
   suma_testowa := 0;
 // zerowanie całej tablicy
   for i:= 0 to 80 do
@@ -78,9 +118,8 @@ counter := 0;
 
          
          repeat
-            // test
-                    counter := counter+1;
-                    writeln('    *********************** licznik ', counter);
+            // licznik operacji
+              counter := counter+1;
             
             // losowanie  
               l := random(9)+1;
@@ -90,7 +129,6 @@ counter := 0;
               for j:= 1 to 9 do
                   suma_testowa := suma_testowa + testowa[j];
 
- writeln(x, ' *********** test poziom ', poziom, ' pion ', pion, ' losowana ', l, ' testowa ', suma_testowa);
             // testy na pion, poziom i kwadrat
             if pion and poziom and kwadrat then
 
@@ -106,7 +144,7 @@ counter := 0;
                
 
             if (suma_testowa = 0) then
-              x := x-9; //cofamy o jeden
+              x := x-9; //cofamy.
 
 
         
@@ -114,26 +152,32 @@ counter := 0;
 
 
 // wyświetlanie
+writeln('******************* licznik operacji: ', counter);
+    
+     space := 0;
+
   for i := 0 to 80 do
    begin 
      write(tablica[i], ' ');
+    
+     if ((i+1) mod 3 = 0) then
+        write(' ');
+
      if ((i+1) mod 9 = 0) then
-       writeln;
+       begin
+         writeln;
+      
+         space := space + 1;
+         if (space = 3) or (space = 6) then
+           writeln;
+      end;
     end;
-  
+  writeln('*******************');
 end.
 
 
 
- 0  1  2     3 	4  5     6 	7  8  
- 9 10 11    12 13 14    15 16 17 
-18 19 20    21 22 23    24 25 26 
 
-27 28 28    30 31 32    33 34 35 
-36 37 38    39 40 41    42 43 44 
-45 46 47    48 49 50    51 52 53 
 
-54 55 56    57 58 59    60 61 62 
-63 64 65    66 67 68    69 70 71 
-72 73 74    75 76 77    78 79 80 
+
 
