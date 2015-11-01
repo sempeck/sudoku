@@ -3,25 +3,41 @@ program sudoku_ver2;
 var
 	 tablica : array[0..80] of Integer;
 	 testowa : array[1..9] of Integer;
-	 i, j, x, l : Integer;
+	 i, j, x, l, k : Integer;
 	 suma_testowa : Integer;
    next : Boolean;
 
+   rzad, xx : Integer;
+
+
 
 function pion(): Boolean;
-begin
-  pion := false;
-end;
+  begin
+      pion := true;
+      xx := x;
+    
+    if (x <= 9) then
+      rzad := 1
+
+    else   
+      rzad := (x div 9); 
+        for k:= 1 to rzad do
+          begin  
+            xx := xx-9;
+           if (tablica[xx] = l) then
+            pion := false;
+          end;                 
+  end;
 
 function poziom(): Boolean;
-begin
-	poziom := true;
-end;
+  begin
+  	poziom := true;
+  end;
 
 function kwadrat(): Boolean;
-begin
-	kwadrat := true;
-end;
+  begin
+  	kwadrat := true;
+  end;
 
 
 begin
@@ -34,13 +50,14 @@ begin
     tablica[i] := 0;
 
 
-  repeat
 
+  repeat
     // cyfry 1-9 do umieszczenia
       for i := 1 to 9 do
         testowa[i] := i;
          
          repeat
+            
             // losowanie  
               l := random(9)+1;
               testowa[l] := 0; // zaznaczanie, że ta cyfra już była sprawdzana
@@ -48,16 +65,17 @@ begin
               for j:= 1 to 9 do
                   suma_testowa := suma_testowa + testowa[j];
 
-
+ writeln(pion, ' ', x, ' l ', l);
             // testy na pion, poziom i kwadrat
             if pion and poziom and kwadrat then
 
               begin
+
                 tablica[x] := l;
                 x := x+1;
                 next := true;
               end;
- writeln('***test false: ', l);
+
           until (next = true) or (suma_testowa = 0);
 
                
@@ -78,6 +96,22 @@ begin
   
 end.
 
+
+poziom
+
+    l div 9 --> pokazuje który rząd (od zerowego)
+
+pion 
+
+    rzad := x div 9;
+      for i:= 1 to rzad
+        begin  
+          xx := x-9;
+        if tablica[xx] = l then
+          pion := false; 
+        end;           
+      else
+        pion := true;
 
 
  0  1  2     3 	4  5     6 	7  8  
