@@ -1,16 +1,13 @@
 program sudoku_ver2;
 
 var
-	 tablica : array[0..80] of Integer;
-	 testowa : array[1..9] of Integer;
-	 i, j, x, l, k : Integer;
-	 suma_testowa : Integer;
+	 tablica : array[0..80] of Byte;
+	 testowa : array[1..9] of Byte;
+	 i, j, x, l, k, rzad, space, xx, xx1, xx2, xx3, xx4, suma_testowa : Byte;
    next : Boolean;
-
-   rzad, xx, counter, space : Integer;
-   xx1, xx2, xx3, xx4 : Integer;
-
-
+   counter: Integer;
+   tn : Char;
+ 
 
 function pion(): Boolean;
   begin
@@ -101,6 +98,9 @@ end;
  
 
 begin
+
+repeat
+    
   randomize;
 
        counter := 0;
@@ -173,6 +173,12 @@ writeln('******************* licznik operacji: ', counter);
       end;
     end;
   writeln('*******************');
+  writeln();
+  writeln('jeszcze raz? (t/n)');
+  readln(tn);
+
+until tn = 'n';  
+
 end.
 
 
