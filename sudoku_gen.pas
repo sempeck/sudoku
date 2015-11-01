@@ -7,7 +7,7 @@ var
 	 suma_testowa : Integer;
    next : Boolean;
 
-   rzad, xx : Integer;
+   rzad, xx, counter : Integer;
 
 
 
@@ -16,7 +16,7 @@ function pion(): Boolean;
       pion := true;
       xx := x;
     
-    if (x <= 9) then
+    if (x <= 8) then
       rzad := 1
 
     else   
@@ -31,18 +31,39 @@ function pion(): Boolean;
 
 function poziom(): Boolean;
   begin
-  	poziom := true;
+    poziom := true;
+    xx := x;
+
+  if (x = 0) or (x mod 9 = 0) then
+    poziom := true
+  else
+    if (x > 0) and (x <= 8) then
+      repeat
+         xx := xx-1;
+           if (tablica[xx] = l) then
+              poziom := false;
+      until (xx = 0)
+
+    else
+  
+      repeat
+         xx := xx-1;
+           if (tablica[xx] = l) then
+              poziom := false;
+      until (xx mod 9 = 0);
   end;
 
 function kwadrat(): Boolean;
-  begin
-  	kwadrat := true;
+   begin
+   	kwadrat := true;
   end;
 
+ 
 
 begin
   randomize;
 
+counter := 0;
   x := 0;
   suma_testowa := 0;
 // zerowanie całej tablicy
@@ -50,22 +71,26 @@ begin
     tablica[i] := 0;
 
 
-
   repeat
     // cyfry 1-9 do umieszczenia
       for i := 1 to 9 do
         testowa[i] := i;
+
          
          repeat
+            // test
+                    counter := counter+1;
+                    writeln('    *********************** licznik ', counter);
             
             // losowanie  
               l := random(9)+1;
               testowa[l] := 0; // zaznaczanie, że ta cyfra już była sprawdzana
               next := false;
+              suma_testowa := 0;
               for j:= 1 to 9 do
                   suma_testowa := suma_testowa + testowa[j];
 
- writeln(pion, ' ', x, ' l ', l);
+ writeln(x, ' *********** test poziom ', poziom, ' pion ', pion, ' losowana ', l, ' testowa ', suma_testowa);
             // testy na pion, poziom i kwadrat
             if pion and poziom and kwadrat then
 
@@ -81,7 +106,9 @@ begin
                
 
             if (suma_testowa = 0) then
-              x := x-1; //cofamy o jeden
+              x := x-9; //cofamy o jeden
+
+
         
   until x = 81;
 
@@ -96,22 +123,6 @@ begin
   
 end.
 
-
-poziom
-
-    l div 9 --> pokazuje który rząd (od zerowego)
-
-pion 
-
-    rzad := x div 9;
-      for i:= 1 to rzad
-        begin  
-          xx := x-9;
-        if tablica[xx] = l then
-          pion := false; 
-        end;           
-      else
-        pion := true;
 
 
  0  1  2     3 	4  5     6 	7  8  
