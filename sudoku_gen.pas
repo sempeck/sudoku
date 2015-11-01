@@ -3,13 +3,14 @@ program sudoku_ver2;
 var
 	 tablica : array[0..80] of Integer;
 	 testowa : array[1..9] of Integer;
-	 i, x, l : Integer;
+	 i, j, x, l : Integer;
 	 suma_testowa : Integer;
+   next : Boolean;
 
 
 function pion(): Boolean;
 begin
-  pion := true;
+  pion := false;
 end;
 
 function poziom(): Boolean;
@@ -27,39 +28,45 @@ begin
   randomize;
 
   x := 0;
+  suma_testowa := 0;
+// zerowanie całej tablicy
+  for i:= 0 to 80 do
+    tablica[i] := 0;
+
 
   repeat
 
-// tablica ze wszystkimi cyframi
-    for i := 1 to 9 do
-      testowa[i] := i;
+    // cyfry 1-9 do umieszczenia
+      for i := 1 to 9 do
+        testowa[i] := i;
+         
+         repeat
+            // losowanie  
+              l := random(9)+1;
+              testowa[l] := 0; // zaznaczanie, że ta cyfra już była sprawdzana
+              next := false;
+              for j:= 1 to 9 do
+                  suma_testowa := suma_testowa + testowa[j];
 
-// losowanie  
-    l := random(9)+1;
-    testowa[l] := 0; // zaznaczanie, że ta cyfra już była sprawdzana
 
+            // testy na pion, poziom i kwadrat
+            if pion and poziom and kwadrat then
 
-// testy na pion, poziom i kwadrat
-  if pion and poziom and kwadrat then
+              begin
+                tablica[x] := l;
+                x := x+1;
+                next := true;
+              end;
+ writeln('***test false: ', l);
+          until (next = true) or (suma_testowa = 0);
 
-    begin
-      tablica[x] := l;
-      x := x+1;
-    end
+               
 
-  else
-
-    for i:= 1 to 9 do
-      suma_testowa := suma_testowa + testowa[i];
-
-      if suma_testowa = 0 then
-
-         x := x-1; //cofamy o jeden
-     
+            if (suma_testowa = 0) then
+              x := x-1; //cofamy o jeden
         
-
-
   until x = 81;
+
 
 // wyświetlanie
   for i := 0 to 80 do
