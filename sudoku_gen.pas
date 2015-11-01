@@ -9,7 +9,7 @@ var
    tn : Char;
  
 
-function pion(): Boolean;
+function pion : Boolean;
   begin
       pion := true;
       xx := x;
@@ -27,8 +27,8 @@ function pion(): Boolean;
           end;                 
   end;
 
-function poziom(): Boolean;
-  begin
+function poziom : Boolean;
+ begin
     poziom := true;
     xx := x;
 
@@ -49,10 +49,10 @@ function poziom(): Boolean;
            if (tablica[xx] = l) then
               poziom := false;
       until (xx mod 9 = 0);
-  end;
+ end;
 
-function kwadrat(): Boolean;
-begin
+function kwadrat : Boolean;
+ begin
    	kwadrat := true;
      xx := x;
      rzad := (x div 9); 
@@ -61,39 +61,38 @@ begin
  else
   begin
   if (x in [9,12,15,18,21,24,36,39,42,45,48,51,63,66,69,72,75,78]) then
-       begin 
+     begin 
        xx1 := xx - 17;
        xx2 := xx - 16;
        xx3 := xx - 8;
        xx4 := xx - 7;
        if (tablica[xx1] = l) or (tablica[xx2] = l) or (tablica[xx3] = l) or (tablica[xx4] = l) then
          kwadrat := false;
-       end;
+     end;
 
   if (x in [10,13,16,19,22,25,37,40,43,46,49,52,64,67,70,73,76,79]) then
-       begin 
+     begin 
        xx1 := xx - 19;
        xx2 := xx - 17;
        xx3 := xx - 10;
        xx4 := xx - 8;
        if (tablica[xx1] = l) or (tablica[xx2] = l) or (tablica[xx3] = l) or (tablica[xx4] = l) then
          kwadrat := false;
-       end;
-
+     end;
 
   if (x in [11,14,17,20,23,26,38,41,44,47,50,53,65,68,71,74,77,80]) then
-       begin 
+     begin 
        xx1 := xx - 20;
        xx2 := xx - 19;
        xx3 := xx - 11;
        xx4 := xx - 10;
        if (tablica[xx1] = l) or (tablica[xx2] = l) or (tablica[xx3] = l) or (tablica[xx4] = l) then
          kwadrat := false;
-       end;
+     end;
 
   end;
 
-end;
+ end;
 
  
 
