@@ -180,10 +180,3 @@ writeln('******************* licznik operacji: ', counter);
 until tn = 'n';  
 
 end.
-
-
-
-
-
-
-
