@@ -3,7 +3,7 @@ program sudoku_ver2;
 var
 	 tablica : array[0..80] of Byte;
 	 testowa : array[1..9] of Byte;
-	 i, j, x, l, k, rzad, space, xx, xx1, xx2, xx3, xx4, suma_testowa : Byte;
+	 i, j, x, l, k, rzad, space, xx, suma_testowa : Byte;
    next : Boolean;
    counter: Integer;
    tn : Char;
@@ -62,31 +62,19 @@ function kwadrat : Boolean;
   begin
   if (x in [9,12,15,18,21,24,36,39,42,45,48,51,63,66,69,72,75,78]) then
      begin 
-       xx1 := xx - 17;
-       xx2 := xx - 16;
-       xx3 := xx - 8;
-       xx4 := xx - 7;
-       if (tablica[xx1] = l) or (tablica[xx2] = l) or (tablica[xx3] = l) or (tablica[xx4] = l) then
+       if (tablica[xx - 17] = l) or (tablica[xx - 16] = l) or (tablica[xx - 8] = l) or (tablica[xx - 7] = l) then
          kwadrat := false;
      end;
 
   if (x in [10,13,16,19,22,25,37,40,43,46,49,52,64,67,70,73,76,79]) then
      begin 
-       xx1 := xx - 19;
-       xx2 := xx - 17;
-       xx3 := xx - 10;
-       xx4 := xx - 8;
-       if (tablica[xx1] = l) or (tablica[xx2] = l) or (tablica[xx3] = l) or (tablica[xx4] = l) then
+       if (tablica[xx - 19] = l) or (tablica[xx - 17] = l) or (tablica[xx - 10] = l) or (tablica[xx - 8] = l) then
          kwadrat := false;
      end;
 
   if (x in [11,14,17,20,23,26,38,41,44,47,50,53,65,68,71,74,77,80]) then
      begin 
-       xx1 := xx - 20;
-       xx2 := xx - 19;
-       xx3 := xx - 11;
-       xx4 := xx - 10;
-       if (tablica[xx1] = l) or (tablica[xx2] = l) or (tablica[xx3] = l) or (tablica[xx4] = l) then
+       if (tablica[xx - 20] = l) or (tablica[xx - 19] = l) or (tablica[xx - 11] = l) or (tablica[xx - 10] = l) then
          kwadrat := false;
      end;
 
