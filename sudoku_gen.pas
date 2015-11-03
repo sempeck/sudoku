@@ -14,17 +14,17 @@ function pion : Boolean;
       pion := true;
       xx := x;
     
-    if (x <= 8) then
-      rzad := 1
+      if (x <= 8) then
+        rzad := 1
+      else   
+        rzad := (x div 9); 
 
-    else   
-      rzad := (x div 9); 
-        for k:= 1 to rzad do
-          begin  
-            xx := xx-9;
-           if (tablica[xx] = l) then
-            pion := false;
-          end;                 
+      for k:= 1 to rzad do
+        begin  
+          xx := xx-9;
+         if (tablica[xx] = l) then
+          pion := false;
+        end;                 
   end;
 
 function poziom : Boolean;
@@ -103,7 +103,6 @@ repeat
       for i := 1 to 9 do
         testowa[i] := i;
 
-         
          repeat
             // licznik operacji
               counter := counter+1;
@@ -120,28 +119,25 @@ repeat
             if pion and poziom and kwadrat then
 
               begin
-
                 tablica[x] := l;
                 x := x+1;
                 next := true;
               end;
 
-          until (next = true) or (suma_testowa = 0);
-
-               
-
-            if (suma_testowa = 0) then
-              x := x-9; //cofamy.
+         until (next = true) or (suma_testowa = 0);
 
 
-        
+      if (suma_testowa = 0) then
+        x := x-9; //cofamy.
+
+
   until x = 81;
 
 
 // wyświetlanie
-writeln('******************* licznik operacji: ', counter);
+  writeln('******************* licznik operacji: ', counter);
     
-     space := 0;
+  space := 0;
 
   for i := 0 to 80 do
    begin 
